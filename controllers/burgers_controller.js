@@ -28,11 +28,10 @@ router.post("/api/burgers", (req, res) => {
 // put route to UPDATE the devoured status of a burger
 router.put("/api/burgers/:id", (req, res) => {
   const condition = req.params.id;
-  //const update = { devoured: req.body.value };
+  const update = req.body.value;
 
-  burger.update(condition, (result) => {
+  burger.update(update, condition, (result) => {
     if (err) {
-      // If no rows were affected, then the ID must not exist, so 404
 throw err}
     res.status(200).end();
   });
