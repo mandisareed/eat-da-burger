@@ -36,7 +36,7 @@ const orm = {
       }
       cb(result);
     });
-  },
+  }
 
 };
 

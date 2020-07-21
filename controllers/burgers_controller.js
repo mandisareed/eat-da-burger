@@ -19,22 +19,21 @@ router.get("/", (req, res) => {
 
 //post route to create a NEW burger
 router.post("/api/burgers", (req, res) => {
-  burger.create({ name: req.body.name, devoured: req.body.devoured }, (result) => {
+  burger.create([req.body.name], (result) => {
     // Send back the ID of the new burger
-    res.json({ id: result.insertId });
+    res.json(result);
   });
 });
 
 // put route to UPDATE the devoured status of a burger
 router.put("/api/burgers/:id", (req, res) => {
-  const condition = { id: req.params.id };
-  const update = { devoured: req.body.value };
+  const condition = req.params.id;
+  //const update = { devoured: req.body.value };
 
-  burger.update(update, condition, (result) => {
-    if (result.affectedRows === 0) {
+  burger.update(condition, (result) => {
+    if (err) {
       // If no rows were affected, then the ID must not exist, so 404
-      return res.status(404).end();
-    }
+throw err}
     res.status(200).end();
   });
 });
