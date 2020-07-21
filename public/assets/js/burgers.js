@@ -2,9 +2,9 @@
 $(() => {
     $(".eaten-status").on("click", function () {
       const id = $(this).data("id");
-      const newBurger = $(this).data("devoured");
+     //const newBurger = $(this).data("devoured");
   
-      const newBurgerDevouredStatus = { value: newBurger };
+      const newBurgerDevouredStatus = { value: true };
   
       // Send the PUT request.
       $.ajax(`/api/burgers/${id}`, {
@@ -15,7 +15,7 @@ $(() => {
       });
     });
   
-    $(".submit-button").on("submit", (event) => {
+    $(".create-form").on("submit", (event) => {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
   
