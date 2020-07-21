@@ -4,10 +4,10 @@ $(() => {
       const id = $(this).data("id");
      //const newBurger = $(this).data("devoured");
   
-      const newBurgerDevouredStatus = { value: true };
+      //const newBurgerDevouredStatus = { value: true };
         console.log("eat button was clicked");
       // Send the PUT request.
-      $.ajax(`/api/burgers/${id}`, {
+      $.ajax(`/api/burgers/${id}/devoured`, {
         type: "PUT"
       }).then(() => {
         // Reload the page to get the updated list

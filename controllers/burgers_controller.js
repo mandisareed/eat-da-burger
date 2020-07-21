@@ -20,22 +20,26 @@ router.get("/", (req, res) => {
 //post route to create a NEW burger
 router.post("/api/burgers", (req, res) => {
   console.log("/api/burgers post route");
-  console.log("burgername", req.body.name)
-  burger.create({burger_name: req.body.burger_name}, (result) => {
-    // Send back the ID of the new burger
-    res.json(result);
-    console.log(result);
-  });
+  console.log("burgername", req.body.name);
+  burger.create(
+    { burger_name: req.body.burger_name, devoured: req.body.devoured },
+    (result) => {
+      // Send back the ID of the new burger
+      res.json({ id: result.insertId });
+      console.log(result);
+    }
+  );
 });
 
 // put route to UPDATE the devoured status of a burger
-router.put("/api/burgers/:id", (req, res) => {
-  const condition = req.params.id;
-  const update = req.body.value;
+router.put("/api/burgers/:id/devoured", (req, res) => {
+  const condition = { id: req.params.id };
+  const update = { devoured: true };
 
   burger.update(update, condition, (result) => {
-    if (err) {
-throw err}
+    if (result.affectedRows === 0) {
+      return res.status(404).end();
+    }
     res.status(200).end();
   });
 });

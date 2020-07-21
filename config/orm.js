@@ -40,9 +40,9 @@ const orm = {
   //     cb(result);
   //   });
   // }
-  update: (table, condition, cb) => {
-    const queryString = "UPDATE ? SET devoured=true WHERE id= ?";
-    const values = ["burgers", condition.toString()];
+  update: (table, updateValues, condition, cb) => {
+    const queryString = "UPDATE ?? SET ? WHERE ?";
+    const values = [table, updateValues, condition];
     console.log(queryString);
     connection.query(queryString, values, (err, result) => {
       if (err) {
@@ -50,7 +50,7 @@ const orm = {
       }
       cb(result);
     });
-  }
+  },
 };
 
 // Export the orm object
