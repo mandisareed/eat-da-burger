@@ -19,7 +19,9 @@ router.get("/", (req, res) => {
 
 //post route to create a NEW burger
 router.post("/api/burgers", (req, res) => {
-  burger.create([req.body.name], (result) => {
+  console.log("/api/burgers post route");
+  console.log("burgername", req.body.name)
+  burger.create({burger_name: req.body.burger_name}, (result) => {
     // Send back the ID of the new burger
     res.json(result);
     console.log(result);

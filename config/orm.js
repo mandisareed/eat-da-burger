@@ -15,6 +15,7 @@ const orm = {
   
   //to create a new burger
   create: (table, newRowData, cb) => {
+    console.log("table, newRowData :",table, newRowData)
     const queryString = "INSERT INTO ?? SET ?";
     const values = [table, newRowData];
 
@@ -40,7 +41,7 @@ const orm = {
   //   });
   // }
   update: (table, condition, cb) => {
-    const queryString = "UPDATE ?? SET devoured=true WHERE id= ?";
+    const queryString = "UPDATE ? SET devoured=true WHERE id= ?";
     const values = ["burgers", condition.toString()];
     console.log(queryString);
     connection.query(queryString, values, (err, result) => {
